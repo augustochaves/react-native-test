@@ -1,52 +1,29 @@
-# 🧪 Senior React Native Challenge (Expo - Minimal Dependencies)
+# 🧪 Senior React Native Challenge
 
-* ⏱ **Estimated Time**: 2–4 hours
 * 📦 **Stack**: Expo SDK (React Native), TypeScript
-* 🎯 **Goal**: Evaluate your ability to build a clean, maintainable, and performant React Native app using **minimal external libraries**.
+* ⏱ **Target Time**: 1 ½ – 2 ½ h
+* 🎯 **Goal**: demonstrate senior-level mastery of core RN APIs, architecture and code quality
 
 ---
 
-## 🧩 Project Overview
-
-Build a **"MatchCenter Lite"** mobile app with:
-
-1. **News Feed**: List and read sports news.
-2. **Live Scores**: Show sports matches for the day.
-3. **Favorites**: Mark any news or match as favorite.
-4. **Theme Toggle**: Light/dark mode with persistence.
-
-The app must be developed using **Expo** and focus on **core React Native APIs**, avoiding unnecessary dependencies.
-
----
-
-## ✅ Functional Requirements
+## 🗺️ What to Build
 
 ### 1. News Feed
-- Display a list of sports news articles.
-- Implement infinite scroll (`FlatList` + `onEndReached`).
-- Pull-to-refresh using `RefreshControl`.
-- Navigate to a **detail screen** showing:
-  - Hero image
-  - Headline
-  - Body content (markdown or plain text)
+- Infinite scroll (`FlatList` + `onEndReached`).
+- Pull-to-refresh.
+- **Detail screen** with hero image, headline & body.
 
-### 2. Live Scores
-- Display a list of **today’s matches** with:
-  - Teams, status, kickoff time, live score
-- Poll every 15 seconds to simulate live updates.
+### 2. Favorites
+- Toggle ⭐ favorite on any article.
+- Persist with `AsyncStorage`.
+- Favorites screen (list only).
 
-### 3. Favorites
-- User can favorite/unfavorite both news and matches.
-- Persist favorites using `AsyncStorage`.
-- Display favorites in a separate screen.
+### 3. Accessibility & UX
+- Screen-reader labels.
+- Loading / error / empty states.
 
-### 4. Theme Toggle
-- Light/dark mode using a toggle button.
-- Persist the theme preference locally.
-
-### 5. Accessibility & UX
-- Add screen reader labels to buttons and list items.
-- Display clear loading, error, and empty states.
+### ✨ Bonuses
+- Live polling list of today’s matches *(optional – no penalty if skipped)*.
 
 ---
 
@@ -67,7 +44,7 @@ The app must be developed using **Expo** and focus on **core React Native APIs**
 
 - **News**: `https://www.scorebat.com/video-api/v3/` *(no key required)*
 - **Live Scores**: `https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d=YYYY-MM-DD&s=Soccer`
-- If API is unavailable, use local JSON mocks and `setTimeout` to simulate latency.
+- If API is unavailable / quota hit, use local JSON mocks and `setTimeout` to simulate latency.
 
 ---
 
@@ -77,46 +54,24 @@ The app must be developed using **Expo** and focus on **core React Native APIs**
 /src
   /features
     /news
-      NewsList.tsx           # Screen: list of news
-      NewsDetail.tsx         # Screen: news detail
-      useNews.ts             # React Query hook for fetching news
-
-    /scores
-      ScoreList.tsx          # Screen: today's matches
-      useScores.ts           # Hook for polling match data
-
+      NewsList.tsx
+      NewsDetail.tsx
+      useNews.ts         # React-Query hook
     /favorites
-      favorites.context.tsx  # Context for managing favorite items
-      FavoritesScreen.tsx    # Screen: list of favorited news or matches
-
+      favorites.context.tsx
+      FavoritesScreen.tsx
   /components
-    Card.tsx                 # Generic UI card component
-    Button.tsx               # Reusable button with consistent theming
-    Header.tsx               # App header with theme toggle or back button
-
-  /theme
-    colors.ts                # Color palette (light/dark)
-    ThemeProvider.tsx        # Context provider for managing theme
-    useTheme.ts              # Hook to consume and toggle theme
-
+    Card.tsx
+    Button.tsx
   /hooks
-    useStorage.ts            # Wrapper around AsyncStorage
-    usePolling.ts            # Optional: abstract polling logic
-
+    useStorage.ts
   /services
-    api.ts                   # Fetch wrapper or Axios instance
-    endpoints.ts             # API endpoints (centralized config)
-
-  /types
-    news.ts                  # Type definitions for News API
-    scores.ts                # Type definitions for Match data
-
+    api.ts
   /tests
-    NewsList.test.tsx        # Integration test example
-    useNews.test.ts          # Unit test example
-
-  App.tsx                    # Entry point
-  router.tsx / app.config.ts # Routing or Expo config (if needed)
+    NewsList.test.tsx
+    useNews.test.ts
+  ThemeProvider.tsx      # only if you do the bonus
+  App.tsx
 ```
 
 ---
@@ -128,16 +83,21 @@ The app must be developed using **Expo** and focus on **core React Native APIs**
 
 ---
 
+## 📝 **Senior-Level Add-On**
+
+> In **≤ 200 words**, push an `ARCHITECTURE.md` explaining why you structured things the way you did (state boundaries, data flow, performance choices).
+
+---
+
 ## 📊 Evaluation Criteria
 
-| Area                          | Weight (%) |
-|-------------------------------|------------|
-| Project structure & modularity | 30%        |
-| Code quality & reusability     | 20%        |
-| State management (manual)      | 15%        |
-| Performance optimizations      | 15%        |
-| UX & accessibility             | 10%        |
-| Testing coverage               | 10%        |
+| Area                              | % |
+|-----------------------------------|---|
+| Clean architecture & reasoning    | 35 |
+| Code quality & TypeScript rigor   | 25 |
+| Performance considerations        | 15 |
+| Tests & DX                        | 15 |
+| UX / Accessibility                | 10 |
 
 ---
 
@@ -147,21 +107,9 @@ The app must be developed using **Expo** and focus on **core React Native APIs**
 2. Include a **README** with:
    - Setup instructions: `npm i && expo start`
    - Test instructions: `npm run test`
-   - Brief architecture/decision overview
-3. Make atomic and descriptive commits.
+3. `ARCHITECTURE.md` as above.
+4. Make atomic and descriptive commits.
 
 ---
 
-## 💡 Time Management Tips
-
-- Start with the **News Feed** (list + detail).
-- Reuse components/layouts for **Live Scores**.
-- Implement **favorites** with Context + AsyncStorage (fast).
-- Leave theme toggle and tests for the final stretch if time allows.
-- Prefer **simple but complete flows** over starting too many features.
-
----
-
-### 🎯 We’re looking for a clean, modular, performant solution — as close as possible to real-world production code, using only essential tools.
-
-Good luck!
+### 🎯 Good luck – we’re interested in how you think, not how many screens you can ship!
